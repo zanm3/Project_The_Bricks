@@ -38,7 +38,7 @@ function drawIt() {
     function init_paddle() {
         paddlex = canvas.width / 2;
         paddleh = 10;
-        paddlew = 75;
+        paddlew = 95;
     }
     function onKeyDown(evt) {
         if (evt.keyCode == 39)
@@ -88,6 +88,13 @@ function drawIt() {
             dy = -dy; bricks[row][col] = 0;
         }
 
+        if (y + dy > canvas.height - paddleh - 7 && x > paddlex && x < paddlex + paddlew) {
+            dy = -dy; // Reverse the y direction
+            let paddleCenter = paddlex + paddlew / 2;
+            let ballRelativeX = x - paddleCenter;
+            dx = 6 * (ballRelativeX / (paddlew / 2)); // Adjust the x direction based on hit position
+        }
+        
         if (x + dx > canvas.width - 6 || x + dx < 0 + 6)
             dx = -dx;
 
