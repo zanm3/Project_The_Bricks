@@ -94,7 +94,7 @@ function drawIt() {
             let ballRelativeX = x - paddleCenter;
             dx = 6 * (ballRelativeX / (paddlew / 2)); // Adjust the x direction based on hit position
         }
-        
+
         if (x + dx > canvas.width - 6 || x + dx < 0 + 6)
             dx = -dx;
 
