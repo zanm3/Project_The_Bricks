@@ -4,22 +4,24 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="CSS/style.css">
         <link rel="icon" type="image/x-icon" href="img/shield.ico">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title>The Bricks</title>
     </head>
     <body onload="drawIt()">
         <section id="menu">
             <section id="option1">
-                <p class="option">Tocke</p>
+                <p class="option">Najboljši rezultat</p>
             </section>
             <section id="option2">
-                <p class="option">Cas</p>
+                <p class="option"><a href="navodila.html">Navodila</a></p>
             </section>
             <section id="option3">
                 <p class="option">O strani</p>
             </section>
         </section>
         <canvas id="canvas" width="1000" height="600"></canvas>
+        <p>Točke: <mark id="tocke">0</mark></p>
         <script src="JS/script.js"></script>
     </body>
 </html>

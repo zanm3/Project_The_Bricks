@@ -1,9 +1,10 @@
+let ctx;
+let canvas;
+
 let x = 500;
 let y = 500;
 let dx = 2;
 let dy = 4;
-let ctx;
-let canvas;
 let rightDown = false;
 let leftDown = false;
 
@@ -17,6 +18,9 @@ let padding = 10;
 // visuals
 let skrinja = new Image();
 skrinja.src = "img/treasure_chest.png";
+
+// točke
+let tocke;
 
 function initbricks() { //inicializacija opek - polnjenje v tabelož
     bricks = new Array(nrows);
@@ -33,6 +37,8 @@ function drawIt() {
         ctx = canvas.getContext('2d');
         init_paddle();
         initbricks();
+        tocke = 0;
+        $("#tocke").html(tocke);
         return setInterval(draw, 10); //klic funkcije draw vsakih 10 ms; http://www.w3schools.com/jsref/met_win_setinterval.asp
     }
     function init_paddle() {
@@ -86,6 +92,8 @@ function drawIt() {
         //Če smo zadeli opeko, vrni povratno kroglo in označi v tabeli, da opeke ni več
         if (y < nrows * rowheight && row >= 0 && col >= 0 && bricks[row][col] == 1) {
             dy = -dy; bricks[row][col] = 0;
+            tocke += 1;
+            $("#tocke").html(tocke);
         }
 
         if (y + dy > canvas.height - paddleh - 7 && x > paddlex && x < paddlex + paddlew) {
@@ -94,7 +102,6 @@ function drawIt() {
             let ballRelativeX = x - paddleCenter;
             dx = 6 * (ballRelativeX / (paddlew / 2)); // Adjust the x direction based on hit position
         }
-
         if (x + dx > canvas.width - 6 || x + dx < 0 + 6)
             dx = -dx;
 

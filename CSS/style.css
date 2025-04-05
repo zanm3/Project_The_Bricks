@@ -13,6 +13,8 @@ body{
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
+    overflow: hidden ! important;
+    position: relative;
 }
 #menu{
     grid-row: 1;
@@ -60,20 +62,27 @@ body{
 p{
     font-family: 'Times New Roman', Times, serif;
 }
+a{
+    color: black;
+    text-decoration: none;
+}
 #option1:hover{
     background-color: rgb(0, 0, 0);
     color: white;
     text-decoration: underline;
+    width: 50%;
 }
 #option2:hover{
     background-color: rgb(0, 0, 0);
     color: white;
     text-decoration: underline;
+    width: 50%;
 }
 #option3:hover{
     background-color: rgb(0, 0, 0);
     color: white;
     text-decoration: underline;
+    width: 50%;
 }
 #canvas{
     border: 1px solid black;
