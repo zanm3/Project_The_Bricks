@@ -13,15 +13,18 @@
             <section id="option1">
                 <p class="option">Najboljši rezultat</p>
             </section>
-            <section id="option2">
-                <p class="option"><a href="navodila.html">Navodila</a></p>
+            <section id="option2" onclick="showNavodila()">
+                <p class="option">Navodila</p>
             </section>
-            <section id="option3">
+            <section id="option3" onclick="showInfo()">
                 <p class="option">O strani</p>
             </section>
         </section>
+        <section id="scorebox">
+            <p>Točke: <mark id="tocke">0</mark></p>
+        </section>
         <canvas id="canvas" width="1000" height="600"></canvas>
-        <p>Točke: <mark id="tocke">0</mark></p>
         <script src="JS/script.js"></script>
+        <script src="JS/info.js"></script>
     </body>
 </html>

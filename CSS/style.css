@@ -31,7 +31,7 @@ body{
 #option1{
     border-left: 1px solid black;
     border-right: 1px solid black;
-    width: 100px;
+    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,7 +41,7 @@ body{
 }
 #option2{
     border-right: 1px solid black;
-    width: 100px;
+    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,13 +51,28 @@ body{
 }
 #option3{
     border-right: 1px solid black;
-    width: 100px;
+    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: ease 0.3s;
     text-decoration: none;
     cursor: pointer;
+}
+#scorebox{
+    width: 70%;
+    height: 40%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    border-radius: 10px;
+    grid-row: 2;
+    grid-column: 1;
+    justify-self: center;
+    position: relative;
+    top: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 p{
     font-family: 'Times New Roman', Times, serif;
@@ -70,19 +85,19 @@ a{
     background-color: rgb(0, 0, 0);
     color: white;
     text-decoration: underline;
-    width: 50%;
+    width: 30%;
 }
 #option2:hover{
     background-color: rgb(0, 0, 0);
     color: white;
     text-decoration: underline;
-    width: 50%;
+    width: 30%;
 }
 #option3:hover{
     background-color: rgb(0, 0, 0);
     color: white;
     text-decoration: underline;
-    width: 50%;
+    width: 30%;
 }
 #canvas{
     border: 1px solid black;
