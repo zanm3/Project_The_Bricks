@@ -7,6 +7,7 @@ let dx = 2;
 let dy = 4;
 let rightDown = false;
 let leftDown = false;
+let isCliked = false;
 
 let bricks = {};
 let nrows = 5;
@@ -58,8 +59,20 @@ function drawIt() {
         else if (evt.keyCode == 37) leftDown = false;
     }
 
+    function onSpaceDown(evt){
+        if(evt.keyCode == 32)
+            isCliked = true;
+    }
+
+    function onSpaceUp(evt){
+        if(evt.keyCode == 32)
+            isCliked = true;
+    }
+
     $(document).keydown(onKeyDown);
     $(document).keyup(onKeyUp);
+    $(document).keydown(onSpaceDown);
+    $(document).keyup(onSpaceUp);
 
     function draw() {
         // risanje
@@ -68,9 +81,8 @@ function drawIt() {
         ctx.arc(x, y, 7, 0, Math.PI * 2, true)
         ctx.closePath();
         ctx.fill();
-
-        if (rightDown) paddlex += 5;
-        else if (leftDown) paddlex -= 5;
+        if (rightDown && paddlex + paddlew < canvas.width) paddlex += 5;
+        else if (leftDown && paddlex > 0) paddlex -= 5;
 
         ctx.fillRect(paddlex, canvas.height - paddleh, paddlew, paddleh);
 
@@ -117,5 +129,7 @@ function drawIt() {
         x += dx;
         y += dy;
     }
-    const intervalId = init();
+    if(onSpaceDown && onSpaceUp){
+        const intervalId = init();
+    }
 }
