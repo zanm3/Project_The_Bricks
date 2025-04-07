@@ -20,7 +20,7 @@ body{
     grid-row: 1;
     grid-column: 2;
     background-color: rgba(255, 255, 255, 0.5);
-    height: 50%;
+    height: 30%;
     width: 80%;
     justify-self: center;
     margin-top: 2%;
