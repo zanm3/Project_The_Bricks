@@ -3,11 +3,13 @@ let canvas;
 
 let x = 500;
 let y = 500;
-let dx = 2;
-let dy = 4;
+let dx = 1;
+let dy = 2;
 let rightDown = false;
 let leftDown = false;
 let isCliked = false;
+let gameStarted = false;
+let brickHit = 0;
 
 let bricks = {};
 let nrows = 5;
@@ -59,7 +61,9 @@ function drawIt() {
   }
 
   function onSpaceDown(evt) {
-    if (evt.keyCode == 32) isCliked = true;
+    if (evt.keyCode == 32)
+      isCliked = true;
+      gameStarted = true;
   }
 
   function onSpaceUp(evt) {
@@ -78,8 +82,8 @@ function drawIt() {
     ctx.arc(x, y, 7, 0, Math.PI * 2, true);
     ctx.closePath();
     ctx.fill();
-    if (rightDown && paddlex + paddlew < canvas.width) paddlex += 5;
-    else if (leftDown && paddlex > 0) paddlex -= 5;
+    if (rightDown && paddlex + paddlew < canvas.width) paddlex += 6;
+    else if (leftDown && paddlex > 0) paddlex -= 6;
 
     ctx.fillRect(paddlex, canvas.height - paddleh, paddlew, paddleh);
 
@@ -112,8 +116,14 @@ function drawIt() {
     ) {
       dy = -dy;
       bricks[row][col] = 0;
+      brickHit += 1;
       tocke += 1;
       $("#tocke").html(tocke);
+
+      if(brickHit % 3 == 0){
+        dx += 0.4;
+        dy += 0.4;
+      }
     }
 
     if (
@@ -128,6 +138,12 @@ function drawIt() {
     }
 
     // premikanje žogice
+
+    if (isCliked && gameStarted) {
+      x += dx;
+      y += dy;
+    }
+
     if (x + dx > canvas.width - 6 || x + dx < 0 + 6) dx = -dx;
 
     if (y + dy > canvas.height || y + dy < 0) dy = -dy;
@@ -138,8 +154,6 @@ function drawIt() {
         clearInterval(intervalId);
       }
     }
-    x += dx;
-    y += dy;
   }
   const intervalId = init();
 }
