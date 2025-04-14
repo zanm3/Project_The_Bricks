@@ -15,6 +15,10 @@ body{
     grid-template-columns: repeat(3, 1fr);
     overflow: hidden !important;
 }
+.swal2-radio {
+	display: grid !important;
+  text-align: left !important;
+}
 #menu{
     grid-row: 1;
     grid-column: 2;
