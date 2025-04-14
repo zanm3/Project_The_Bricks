@@ -10,14 +10,12 @@ function showInfo() {
 function showNavodila() {
     Swal.fire({
       title: 'Navodila',
-      html: '<p>Igra je klasični brick breaker.</p> <p>Plošček premikaj z levo in desno puščico na tipkovnici</p><p>Cilj igre je zrušiti vse opeke, čas in točke se beležita.</p>',
+      html: '<p>Igra je klasični brick breaker.</p> <p>Plošček premikaj z levo in desno puščico na tipkovnici,</p><p>igro pa zaženi s pritiskom presledka (space bar).</p><p>Cilj igre je zrušiti vse opeke, čas in točke se beležita.</p>',
       confirmButtonText: 'OK'
     });
 }
 
 (async () => {
-
-  /* inputOptions can be an object or Promise */
   const inputOptions = new Promise((resolve) => {
     setTimeout(() => {
       resolve({

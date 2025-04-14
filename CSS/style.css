@@ -19,6 +19,27 @@ body{
 	display: grid !important;
   text-align: left !important;
 }
+#pauseOrResume{
+    width: 32px;
+    height: 32px;
+    background-image: url(../img/pause_icon.png);
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+    border-radius: 5px;
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+    position: relative;
+    top: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease 0.3s;
+}
+#pauseOrResume:hover{
+    transform: scale(1.25);
+}
 #menu{
     grid-row: 1;
     grid-column: 2;
