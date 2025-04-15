@@ -18,11 +18,10 @@ let brickwidth = 45;
 let brickheight = 45;
 let padding = 10;
 
-// visuals
 let skrinja = new Image();
 skrinja.src = "img/treasure_chest.png";
-
-// točke
+let pause;
+let isPaused = false;
 let tocke;
 
 function initbricks() {
@@ -39,6 +38,7 @@ function drawIt() {
   function init() {
     canvas = document.getElementById("canvas");
     ctx = canvas.getContext("2d");
+    pause = document.getElementById("pause");
     init_paddle();
     initbricks();
     tocke = 0;
