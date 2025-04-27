@@ -6,7 +6,6 @@ function showInfo() {
       confirmButtonText: 'OK'
     });
 }
-
 function showNavodila() {
     Swal.fire({
       title: 'Navodila',
