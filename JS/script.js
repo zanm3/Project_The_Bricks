@@ -5,6 +5,9 @@ let x = 500;
 let y = 500;
 let dx = 1;
 let dy = 2;
+let xIncrease = 0;
+let yIncrease = 0;
+
 let rightDown = false;
 let leftDown = false;
 let isCliked = false;
@@ -24,6 +27,48 @@ skrinja.src = "img/treasure_chest.png";
 
 // točke
 let tocke;
+
+// tezavnost
+function nastaviTezavnost(tezavnost){
+  switch(tezavnost){
+      case 'enostavno':
+        xIncrease = 0.4;
+        yIncrease = 0.4;
+      break;
+      case 'srednje':
+        xIncrease = 0.5;
+        yIncrease = 0.5;
+      break;
+      case 'tezko':
+        xIncrease = 0.6;
+        yIncrease = 0.6;
+      break;
+  }
+}
+
+(async () => {
+  const inputOptions = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        'enostavno': 'Enostavno',
+        'srednje' : 'Srednje',
+        'tezko': 'Težko'
+      })
+    }, 1000)
+  })
+  
+   const { value: tezavnost } = await Swal.fire({
+    title: 'Izberi težavnost',
+    input: 'radio',
+    inputOptions: inputOptions,
+    inputValidator: (value) => {
+      if (!value) {
+        return 'Vnos težavnosti je obvezen!'
+      }
+    }
+  });
+    nastaviTezavnost(tezavnost);
+  })();
 
 function initbricks() {
   //inicializacija opek - polnjenje v tabelož
@@ -121,8 +166,8 @@ function drawIt() {
       $("#tocke").html(tocke);
 
       if(brickHit % 3 == 0){
-        dx += 0.4;
-        dy += 0.4;
+        dx += xIncrease;
+        dy += yIncrease;
       }
     }
 

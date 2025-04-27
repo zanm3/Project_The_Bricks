@@ -14,26 +14,3 @@ function showNavodila() {
       confirmButtonText: 'OK'
     });
 }
-
-(async () => {
-  const inputOptions = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        'Enostavno': 'Enostavno',
-        'Srednje' : 'Srednje',
-        'Težko': 'Težko'
-      })
-    }, 1000)
-  })
-  
-  const { value: color } = await Swal.fire({
-    title: 'Izberi težavnost',
-    input: 'radio',
-    inputOptions: inputOptions,
-    inputValidator: (value) => {
-      if (!value) {
-        return 'Vnos težavnosti je obvezen!'
-      }
-    }
-  })
-  })()
