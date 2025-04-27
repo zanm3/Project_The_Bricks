@@ -19,7 +19,7 @@ body{
 	display: grid !important;
   text-align: left !important;
 }
-#pauseOrResume{
+#pause{
     width: 32px;
     height: 32px;
     background-image: url(../img/pause_icon.png);
@@ -29,6 +29,7 @@ body{
     border-radius: 5px;
     grid-row: 1;
     grid-column: 1;
+    cursor: pointer;
     justify-self: center;
     position: relative;
     top: 30%;
@@ -37,7 +38,7 @@ body{
     align-items: center;
     transition: ease 0.3s;
 }
-#pauseOrResume:hover{
+#pause:hover{
     transform: scale(1.25);
 }
 #menu{
