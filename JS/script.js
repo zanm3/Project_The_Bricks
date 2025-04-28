@@ -12,6 +12,8 @@ let rightDown = false;
 let leftDown = false;
 let isCliked = false;
 let gameStarted = false;
+let gamePaused = false;
+let gameResumed = false;
 let brickHit = 0;
 
 let bricks = {};
@@ -115,6 +117,22 @@ function drawIt() {
     if (evt.keyCode == 32) isCliked = true;
   }
 
+  document.getElementById("pause").addEventListener("click", function(){
+    if (!gamePaused) {
+        clearInterval(intervalId);
+        gamePaused = true;
+        gameResumed = false;
+    }
+});
+
+document.getElementById("resume").addEventListener("click", function(){
+    if (!gameResumed) {
+        intervalId = setInterval(draw, 10);
+        gamePaused = false;
+        gameResumed = true;
+    }
+});
+
   $(document).keydown(onKeyDown);
   $(document).keyup(onKeyUp);
   $(document).keydown(onSpaceDown);
@@ -200,5 +218,5 @@ function drawIt() {
       }
     }
   }
-  const intervalId = init();
+  let intervalId = init();
 }
