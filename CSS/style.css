@@ -22,7 +22,7 @@ body{
 #pause{
     width: 32px;
     height: 32px;
-    background-image: url(../img/pause_icon.png);
+    background-image: url(/img/pause_icon.png);
     background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid black;
@@ -42,7 +42,7 @@ body{
 #resume{
     width: 33px;
     height: 33px;
-    background-image: url(../img/resume.png);
+    background-image: url(/img/resume.png);
     background-repeat: no-repeat;
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid black;
