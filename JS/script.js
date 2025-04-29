@@ -207,10 +207,10 @@ document.getElementById("resume").addEventListener("click", function(){
       y += dy;
     }
 
-    if (x + dx > canvas.width - 5 || x + dx < 0 + 5) dx = -dx;
+    if (x + dx > canvas.width - 7 || x + dx < 0 + 7) dx = -dx;
 
     if (y + dy > canvas.height || y + dy < 0) dy = -dy;
-    else if (y + dy > canvas.height - 5) {
+    else if (y + dy > canvas.height - 7) {
       if (x > paddlex && x < paddlex + paddlew) {
         dy = -dy;
       } else {
@@ -220,13 +220,13 @@ document.getElementById("resume").addEventListener("click", function(){
 
     if(y + dy < 5) {
       dy = -dy;
-  } else if(y + dy > canvas.height-5) {
+  } else if(y + dy > canvas.height-7) {
       gameOver();
   }
   
-  if(y + dy < 5) {
+  if(y + dy < 7) {
       dy = -dy;
-  } else if(y + dy > canvas.height-5) {
+  } else if(y + dy > canvas.height-7) {
       if(x > paddlex && x < paddlex + paddlew) {
           dy = -dy;
       }
