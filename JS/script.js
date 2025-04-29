@@ -33,16 +33,16 @@ let tocke;
 function nastaviTezavnost(tezavnost){
   switch(tezavnost){
       case 'enostavno':
-        xIncrease = 0.4;
-        yIncrease = 0.4;
+        xIncrease = 0.2;
+        yIncrease = 0.2;
       break;
       case 'srednje':
-        xIncrease = 0.5;
-        yIncrease = 0.5;
+        xIncrease = 0.3;
+        yIncrease = 0.3;
       break;
       case 'tezko':
-        xIncrease = 0.6;
-        yIncrease = 0.6;
+        xIncrease = 0.4;
+        yIncrease = 0.4;
       break;
   }
 }
