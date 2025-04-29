@@ -26,7 +26,7 @@ function gameOver() {
 function pregledTock(){
     Swal.fire({
       title: 'Stevilo Tock',
-      html: `<p>${tocke} tock</p>`,
+      html: `<p>Dosegel si ${tocke} tock</p>`,
       confirmButtonText: 'OK'
     }).then((result) =>{
       if(result.isConfirmed){
