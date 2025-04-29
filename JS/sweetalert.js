@@ -13,3 +13,24 @@ function showNavodila() {
       confirmButtonText: 'OK'
     });
 }
+function gameOver() {
+  Swal.fire({
+    title: 'Game Over!',
+    confirmButtonText: 'OK'
+  }).then((result) => {
+    if(result.isConfirmed){
+      pregledTock();
+    }
+  });
+}
+function pregledTock(){
+    Swal.fire({
+      title: 'Stevilo Tock',
+      html: `<p>${tocke} tock</p>`,
+      confirmButtonText: 'OK'
+    }).then((result) =>{
+      if(result.isConfirmed){
+        document.location.reload();
+      }
+    });
+}

@@ -109,12 +109,12 @@ function drawIt() {
 
   function onSpaceDown(evt) {
     if (evt.keyCode == 32)
-      isCliked = true;
-      gameStarted = true;
+        isCliked = true;
   }
 
   function onSpaceUp(evt) {
-    if (evt.keyCode == 32) isCliked = true;
+    if (evt.keyCode == 32)
+        isCliked = true;
   }
 
   document.getElementById("pause").addEventListener("click", function(){
@@ -202,21 +202,38 @@ document.getElementById("resume").addEventListener("click", function(){
 
     // premikanje žogice
 
-    if (isCliked && gameStarted) {
+    if (isCliked) {
       x += dx;
       y += dy;
     }
 
-    if (x + dx > canvas.width - 6 || x + dx < 0 + 6) dx = -dx;
+    if (x + dx > canvas.width - 5 || x + dx < 0 + 5) dx = -dx;
 
     if (y + dy > canvas.height || y + dy < 0) dy = -dy;
-    else if (y + dy > canvas.height - 6) {
+    else if (y + dy > canvas.height - 5) {
       if (x > paddlex && x < paddlex + paddlew) {
         dy = -dy;
       } else {
         clearInterval(intervalId);
       }
     }
+
+    if(y + dy < 5) {
+      dy = -dy;
+  } else if(y + dy > canvas.height-5) {
+      gameOver();
+  }
+  
+  if(y + dy < 5) {
+      dy = -dy;
+  } else if(y + dy > canvas.height-5) {
+      if(x > paddlex && x < paddlex + paddlew) {
+          dy = -dy;
+      }
+      else {
+          gameOver();
+      }
+  }
   }
   let intervalId = init();
 }
