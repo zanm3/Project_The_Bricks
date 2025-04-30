@@ -14,19 +14,20 @@ function showNavodila() {
     });
 }
 function gameOver() {
+  let seconds = Math.floor(((countTime * 10) / 1000));
   Swal.fire({
     title: 'Game Over!',
     confirmButtonText: 'OK'
   }).then((result) => {
     if(result.isConfirmed){
-      pregledTock();
+      pregledTockinCasa(tocke, seconds);
     }
   });
 }
-function pregledTock(){
+function pregledTockinCasa(tocke, seconds){
     Swal.fire({
       title: 'Stevilo Tock',
-      html: `<p>Dosegel si ${tocke} tock</p>`,
+      html: `<p>Dosegel si ${tocke} tock</p><p>Tvoj čas je ${seconds}s</p>`,
       confirmButtonText: 'OK'
     }).then((result) =>{
       if(result.isConfirmed){
@@ -34,3 +35,10 @@ function pregledTock(){
       }
     });
 }
+document.addEventListener('DOMContentLoaded', async function () {
+  await Swal.fire({
+    title: 'Dobrodošel v Fantasy Brick Breaker-ju!',
+    html: '<p>Igro začneš s presledkom na tipkovnici (spacebar), s ploščkom se premikaj z uporabo leve in desne puščice (arrow keys).</p>',
+    confirmButtonText: 'OK'
+  })
+});

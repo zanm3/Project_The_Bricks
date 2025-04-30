@@ -15,6 +15,7 @@ let gameStarted = false;
 let gamePaused = false;
 let gameResumed = false;
 let brickHit = 0;
+let countTime = 0;
 
 let bricks = {};
 let nrows = 5;
@@ -47,32 +48,42 @@ function nastaviTezavnost(tezavnost){
   }
 }
 
-(async () => {
+document.addEventListener('DOMContentLoaded', async function () {
+  await Swal.fire({
+    title: 'Dobrodošel v Fantasy Brick Breaker-ju!',
+    html: '<p>Igro začneš s presledkom na tipkovnici (spacebar), s ploščkom se premikaj z uporabo leve in desne puščice (arrow keys).</p>',
+    confirmButtonText: 'OK'
+  });
+
+  // Po potrditvi prvega Swal-a, se odpre naslednji z izbiro težavnosti
   const inputOptions = new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         'enostavno': 'Enostavno',
         'srednje' : 'Srednje',
         'tezko': 'Težko'
-      })
-    }, 1000)
-  })
-  
-   const { value: tezavnost } = await Swal.fire({
+      });
+    }, 1000);
+  });
+
+  const { value: tezavnost } = await Swal.fire({
     title: 'Izberi težavnost',
     input: 'radio',
     inputOptions: inputOptions,
     inputValidator: (value) => {
       if (!value) {
-        return 'Vnos težavnosti je obvezen!'
+        return 'Vnos težavnosti je obvezen!';
       }
     }
   });
+
+  if (tezavnost) {
     nastaviTezavnost(tezavnost);
-  })();
+  }
+
+});
 
 function initbricks() {
-  //inicializacija opek - polnjenje v tabelož
   bricks = new Array(nrows);
   for (i = 0; i < nrows; i++) {
     bricks[i] = new Array(nrows);
@@ -90,7 +101,7 @@ function drawIt() {
     initbricks();
     tocke = 0;
     $("#tocke").html(tocke);
-    return setInterval(draw, 10); //klic funkcije draw vsakih 10 ms; http://www.w3schools.com/jsref/met_win_setinterval.asp
+    return setInterval(draw, 10);
   }
   function init_paddle() {
     paddlex = canvas.width / 2;
@@ -139,7 +150,6 @@ document.getElementById("resume").addEventListener("click", function(){
   $(document).keyup(onSpaceUp);
 
   function draw() {
-    // risanje
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.arc(x, y, 7, 0, Math.PI * 2, true);
@@ -205,12 +215,13 @@ document.getElementById("resume").addEventListener("click", function(){
     if (isCliked) {
       x += dx;
       y += dy;
+      countTime++;
     }
 
-    if (x + dx > canvas.width - 7 || x + dx < 0 + 7) dx = -dx;
+    if (x + dx > canvas.width - 5 || x + dx < 0 + 5) dx = -dx;
 
     if (y + dy > canvas.height || y + dy < 0) dy = -dy;
-    else if (y + dy > canvas.height - 7) {
+    else if (y + dy > canvas.height - 5) {
       if (x > paddlex && x < paddlex + paddlew) {
         dy = -dy;
       } else {
@@ -220,13 +231,13 @@ document.getElementById("resume").addEventListener("click", function(){
 
     if(y + dy < 5) {
       dy = -dy;
-  } else if(y + dy > canvas.height-7) {
+  } else if(y + dy > canvas.height-5) {
       gameOver();
   }
   
-  if(y + dy < 7) {
+  if(y + dy < 5) {
       dy = -dy;
-  } else if(y + dy > canvas.height-7) {
+  } else if(y + dy > canvas.height-5) {
       if(x > paddlex && x < paddlex + paddlew) {
           dy = -dy;
       }
@@ -236,4 +247,5 @@ document.getElementById("resume").addEventListener("click", function(){
   }
   }
   let intervalId = init();
+  let seconds = ((countTime * 10) / 1000);
 }
