@@ -15,6 +15,8 @@ let gameStarted = false;
 let gamePaused = false;
 let gameResumed = false;
 let brickHit = 0;
+let totalBricks = 0;
+let destroyedBricks = [];
 let countTime = 0;
 
 let bricks = {};
@@ -89,6 +91,7 @@ function initbricks() {
     bricks[i] = new Array(nrows);
     for (j = 0; j < ncols; j++) {
       bricks[i][j] = 1;
+      totalBricks++;
     }
   }
 }
@@ -189,6 +192,7 @@ document.getElementById("resume").addEventListener("click", function(){
     ) {
       dy = -dy;
       bricks[row][col] = 0;
+      destroyedBricks.push({ row: row, col: col });
       brickHit += 1;
       tocke += 1;
       $("#tocke").html(tocke);
@@ -196,7 +200,19 @@ document.getElementById("resume").addEventListener("click", function(){
       if(brickHit % 3 == 0){
         dx += xIncrease;
         dy += yIncrease;
+
+        if (destroyedBricks.length > 0 && brickHit < nrows * ncols) {
+          let index = Math.floor(Math.random() * destroyedBricks.length);
+          let pos = destroyedBricks.splice(index, 1)[0];
+          bricks[pos.row][pos.col] = 1;
+          totalBricks++;
       }
+      }
+    }
+
+    if(brickHit >= totalBricks){
+        clearInterval(intervalId);
+        zmaga();
     }
 
     if (

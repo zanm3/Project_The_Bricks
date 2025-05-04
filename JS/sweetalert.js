@@ -13,28 +13,52 @@ function showNavodila() {
       confirmButtonText: 'OK'
     });
 }
+
 function gameOver() {
   let seconds = Math.floor(((countTime * 10) / 1000));
+
   Swal.fire({
     title: 'Game Over!',
-    confirmButtonText: 'OK'
+    text: 'Žal si izgubil. Želiš poskusiti znova?',
+    showCancelButton: true,
+    confirmButtonText: 'Igraj znova',
+    cancelButtonText: 'Končaj igro'
   }).then((result) => {
-    if(result.isConfirmed){
+    const confirmButton = document.querySelector('.swal2-confirm'); // "Igraj znova"
+    const cancelButton = document.querySelector('.swal2-cancel');  // "Končaj igro"
+    
+    confirmButton.addEventListener('click', () => {
+      location.reload();
+    });
+
+    cancelButton.addEventListener('click', () => {
       pregledTockinCasa(tocke, seconds);
-    }
+    });
   });
 }
-function pregledTockinCasa(tocke, seconds){
-    Swal.fire({
-      title: 'Stevilo Tock',
-      html: `<p>Dosegel si ${tocke} tock</p><p>Tvoj čas je ${seconds}s</p>`,
-      confirmButtonText: 'OK'
-    }).then((result) =>{
-      if(result.isConfirmed){
-        document.location.reload();
-      }
-    });
+
+function pregledTockinCasa(tocke, seconds) {
+  Swal.fire({
+    title: 'Statistika igre',
+    html: `<p>Dosegel si <strong>${tocke}</strong> točk</p><p>Čas igranja: <strong>${seconds}</strong> sekund</p>`,
+    icon: 'info',
+    confirmButtonText: 'V redu'
+  }).then(() => {
+    isCliked = false;
+    rightDown = false;
+    leftDown = false;
+
+    $(document).off('keydown');
+    $(document).off('keyup');
+
+    document.getElementById("pause").disabled = true;
+    document.getElementById("resume").disabled = true;
+
+    const canvasEl = document.getElementById("canvas");
+    canvasEl.style.opacity = 0.4;
+  });
 }
+
 document.addEventListener('DOMContentLoaded', async function () {
   await Swal.fire({
     title: 'Dobrodošel v Fantasy Brick Breaker-ju!',
@@ -42,3 +66,31 @@ document.addEventListener('DOMContentLoaded', async function () {
     confirmButtonText: 'OK'
   })
 });
+
+function zmaga() {
+  Swal.fire({
+    title: 'Čestitke!',
+    html: `<p>Premagal si Fantasy Brick Breaker!</p><p>Skupno število točk: <strong>${tocke}</strong></p>`,
+    icon: 'success',
+    showCancelButton: true,
+    confirmButtonText: 'Igraj znova',
+    cancelButtonText: 'Končaj igro'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.reload();
+    } else {
+      isCliked = false;
+      rightDown = false;
+      leftDown = false;
+
+      $(document).off('keydown');
+      $(document).off('keyup');
+
+      document.getElementById("pause").disabled = true;
+      document.getElementById("resume").disabled = true;
+
+      const canvasEl = document.getElementById("canvas");
+      canvasEl.style.opacity = 0.4;
+    }
+  }
+)}

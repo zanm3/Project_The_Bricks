@@ -98,16 +98,6 @@ body{
     text-decoration: none;
     cursor: pointer;
 }
-#option3{
-    border-right: 1px solid black;
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: ease 0.3s;
-    text-decoration: none;
-    cursor: pointer;
-}
 #scorebox{
     width: 70%;
     height: 40%;
