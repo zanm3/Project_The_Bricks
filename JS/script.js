@@ -178,7 +178,7 @@ document.getElementById("resume").addEventListener("click", function(){
       }
     }
 
-    rowheight = brickheight + padding; //Smo zadeli opeko?
+    rowheight = brickheight + padding;
     colwidth = brickwidth + padding;
     row = Math.floor(y / rowheight);
     col = Math.floor(x / colwidth);
